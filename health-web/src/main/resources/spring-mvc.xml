@@ -25,4 +25,6 @@
     <!--    消费端启动检查-->
     <dubbo:consumer check="false"  timeout="1200000"></dubbo:consumer>
     <!--    上传组件-->
+
+
 </beans>
