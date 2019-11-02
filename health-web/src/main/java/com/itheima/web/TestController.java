@@ -1,6 +1,7 @@
 package com.itheima.web;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.itheima.entity.Result;
 import com.itheima.pojo.Test;
 import com.itheima.service.TestService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ public class TestController {
     TestService testService;
 
     @RequestMapping("/findAll")
-    public List<Test> findAll(){
-        return testService.findAll();
+    public Result findAll(){
+        return null;
     }
 }
