@@ -30,5 +30,6 @@ public class CheckItemServiceImpl implements CheckItemService {
 
         page.getTotal();
         page.getResult();
+        return null;
     }
 }
