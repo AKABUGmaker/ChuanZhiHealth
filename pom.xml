@@ -5,19 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.itheima</groupId>
-    <artifactId>health-parent-86</artifactId>
+    <artifactId>health-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>health-common</module>
         <module>health-pojo</module>
-        <module>health-interfaces</module>
         <module>health-dao</module>
+        <module>health-interfaces</module>
         <module>health-service</module>
         <module>health-web</module>
     </modules>
     <packaging>pom</packaging>
-
-
     <!-- 集中定义依赖版本号 -->
     <properties>
         <junit.version>4.12</junit.version>
@@ -38,7 +36,6 @@
         <quartz.version>2.2.1</quartz.version>
         <hutool.version>4.5.5</hutool.version>
     </properties>
-
     <!-- 依赖管理标签  必须加 -->
     <dependencyManagement>
         <dependencies>
@@ -73,31 +70,21 @@
                 <artifactId>spring-aspects</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>org.springframework</groupId>-->
-<!--                <artifactId>spring-jms</artifactId>-->
-<!--                <version>${spring.version}</version>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jms</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-            </dependency>
-
-
-
             <!-- dubbo相关 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -114,7 +101,11 @@
                 <artifactId>zkclient</artifactId>
                 <version>${zkclient.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
@@ -125,14 +116,11 @@
                 <artifactId>javassist</artifactId>
                 <version>3.12.1.GA</version>
             </dependency>
-<!--            加密 解密-->
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>1.10</version>
             </dependency>
-
-<!--            分页插件-->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
@@ -168,8 +156,6 @@
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons-fileupload.version}</version>
             </dependency>
-
-<!--            定时任务-->
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz</artifactId>
@@ -181,7 +167,6 @@
                 <version>${quartz.version}</version>
             </dependency>
 
-<!--            图片上传-->
             <dependency>
                 <groupId>com.qiniu</groupId>
                 <artifactId>qiniu-java-sdk</artifactId>
@@ -198,8 +183,6 @@
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
             </dependency>
-
-<!--            redis 有哪些数据类型 ，redis单线程为什么快-->
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
@@ -217,7 +200,6 @@
                 <version>${spring.security.version}</version>
             </dependency>
 
-<!--            各种工具类-->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
@@ -226,17 +208,14 @@
 
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${servlet-api.version}</version>
-<!--            tomcat容器自己有，provided不参与打包-->
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <!-- java编译插件 -->
@@ -252,6 +231,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>
