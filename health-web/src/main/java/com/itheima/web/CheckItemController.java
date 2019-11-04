@@ -5,12 +5,15 @@ import com.itheima.constant.MessageConstant;
 import com.itheima.entity.PageResult;
 import com.itheima.entity.QueryPageBean;
 import com.itheima.entity.Result;
+import com.itheima.exception.CheckItemException;
 import com.itheima.pojo.CheckItem;
 import com.itheima.service.CheckItemService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RequestMapping("/checkitem")
 @RestController
@@ -44,20 +47,39 @@ public class CheckItemController {
     }
 
     @RequestMapping("/edit")
-    public Result edit(@RequestBody CheckItem checkItem){
+    public Result edit(@RequestBody CheckItem checkItem) {
         checkItemService.edit(checkItem);
-        return new Result(true,"");
+        return new Result(true, "");
     }
 
     @RequestMapping("/findById")
-    public Result findById(Integer id){
+    public Result findById(Integer id) {
         try {
             CheckItem checkItem = checkItemService.findById(id);
-            return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS,checkItem);
+            return new Result(true, MessageConstant.QUERY_CHECKITEM_SUCCESS, checkItem);
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result(false,MessageConstant.QUERY_CHECKITEM_FAIL);
+            return new Result(false, MessageConstant.QUERY_CHECKITEM_FAIL);
         }
 
     }
+
+
+    @RequestMapping("/delete")
+    public Result delete(Integer id) {
+        try {
+            checkItemService.delete(id);
+        } catch (CheckItemException e) {
+            e.printStackTrace();
+            return Result.error("");
+        }
+        return Result.success("");
+    }
+
+    @RequestMapping("/findAll")
+    public Result findAll(){
+        List<CheckItem> checkItems = checkItemService.findAll();
+        return Result.success("",checkItems);
+    }
+
 }

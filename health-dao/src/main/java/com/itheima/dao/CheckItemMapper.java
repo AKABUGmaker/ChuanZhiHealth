@@ -15,4 +15,9 @@ public interface CheckItemMapper {
 
     void edit(CheckItem checkItem);
 
+    void delete(@Param("id") Integer id);
+
+    int findCountById(@Param("id") Integer id);
+
+    List<CheckItem> findAll();
 }
