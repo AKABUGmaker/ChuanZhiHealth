@@ -26,10 +26,20 @@ public class CheckItemServiceImpl implements CheckItemService {
     @Override
     public PageResult findPage(QueryPageBean queryPageBean) {
         Page page = PageHelper.startPage(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
+
         List<CheckItem> checkItems = checkItemMapper.findPage(queryPageBean.getQueryString());
 
-        page.getTotal();
-        page.getResult();
-        return null;
+        return new PageResult(page.getTotal(),checkItems);
+    }
+
+    @Override
+    public CheckItem findById(Integer id) {
+
+        return checkItemMapper.findById(id);
+    }
+
+    @Override
+    public void edit(CheckItem checkItem) {
+        checkItemMapper.edit(checkItem);
     }
 }

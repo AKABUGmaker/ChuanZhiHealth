@@ -9,4 +9,20 @@
                       values
         (#{code},#{name},#{sex},#{age},#{price},#{type},#{remark},#{attention})
     </insert>
+
+    <update id="edit">
+        update t_checkitem set code = #{code},name = #{name} where id = #{id}
+    </update>
+
+    <select id="findPage" resultType="com.itheima.pojo.CheckItem">
+        select * from t_checkitem
+
+        <if test="queryString != null and queryString.length > 0">
+            where code = #{queryString} or name = #{queryString}
+        </if>
+    </select>
+
+    <select id="findById" resultType="com.itheima.pojo.CheckItem">
+        select * from t_checkitem where id = #{id}
+    </select>
 </mapper>
