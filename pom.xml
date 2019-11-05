@@ -14,6 +14,7 @@
         <module>health-interfaces</module>
         <module>health-service</module>
         <module>health-web</module>
+        <module>health-jobs</module>
     </modules>
     <packaging>pom</packaging>
     <!-- 集中定义依赖版本号 -->
@@ -167,11 +168,13 @@
                 <version>${quartz.version}</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/com.qiniu/qiniu-java-sdk -->
             <dependency>
                 <groupId>com.qiniu</groupId>
                 <artifactId>qiniu-java-sdk</artifactId>
-                <version>7.2.0</version>
+                <version>7.2.27</version>
             </dependency>
+
             <!--POI报表-->
             <dependency>
                 <groupId>org.apache.poi</groupId>
