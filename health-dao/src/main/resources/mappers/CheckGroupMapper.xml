@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.dao.CheckGroupMapper">
+
+    <!--
+      useGeneratedKeys="true" keyProperty="id" 数据库主键是自增
+      <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey> 数据库主键不是自增
+     -->
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into t_checkgroup(code,name,sex,helpCode,remark,attention)
+        values
+        (#{code},#{name},#{sex},#{helpCode},#{remark},#{attention})
+    </insert>
+
+    <insert id="setCheckItemAndCheckGroupRelation">
+        insert into t_checkgroup_checkitem (checkitem_id,checkgroup_id) values (#{checkitemId},#{groupId})
+    </insert>
+
+    <update id="edit">
+        update t_checkgroup
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="helpCode != null">
+                helpCode = #{helpCode},
+            </if>
+            <if test="attention != null">
+                attention = #{attention},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="setCheckItemAndCheckGroupRelation2">
+        insert into t_checkgroup_checkitem (checkgroup_id,checkitem_id) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.checkgroup_id},#{item.checkitem_id})
+        </foreach>
+    </insert>
+
+    <delete id="deleteAssociation">
+        delete from t_checkgroup_checkitem where checkgroup_id = #{id}
+    </delete>
+
+    <select id="findPage" resultType="com.itheima.pojo.CheckGroup">
+        select * from t_checkgroup
+    </select>
+
+    <select id="findById" resultType="com.itheima.pojo.CheckGroup">
+        select * from t_checkgroup where id = #{id}
+    </select>
+
+    <select id="findCheckItemIdsByCheckGroup" resultType="java.lang.Integer">
+        select checkitem_id from t_checkgroup_checkitem where checkgroup_id = #{id}
+    </select>
+
+    <select id="findAll" resultType="com.itheima.pojo.CheckGroup">
+        select * from t_checkgroup
+    </select>
+</mapper>

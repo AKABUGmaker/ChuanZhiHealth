@@ -33,5 +33,6 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
+    <import resource="applicationContext-redis.xml"></import>
 
 </beans>
