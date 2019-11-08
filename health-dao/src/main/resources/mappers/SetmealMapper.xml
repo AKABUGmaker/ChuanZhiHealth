@@ -16,4 +16,28 @@
     <select id="findPage" resultType="com.itheima.pojo.Setmeal">
       select * from t_setmeal
     </select>
+    <select id="findAll" resultType="com.itheima.pojo.Setmeal">
+        select * from t_setmeal
+    </select>
+    <select id="findById" resultType="com.itheima.pojo.Setmeal">
+        select * from t_setmeal where id = #{id}
+    </select>
+
+    <select id="findCheckGroupBySetmealId" resultType="com.itheima.pojo.CheckGroup">
+         select * from t_checkgroup where id in (select checkgroup_id from t_setmeal_checkgroup where setmeal_id = #{id})
+    </select>
+
+    <select id="findCheckItemByCheckGroupId" resultType="com.itheima.pojo.CheckItem">
+        select b.* from t_checkgroup_checkitem a left join t_checkitem b on a.checkitem_id = b.id where a.checkgroup_id = #{id}
+    </select>
+
+    <select id="findCheckItemsByCheckGroupIdBatch" resultType="com.itheima.pojo.CheckItem">
+        select b.*,a.checkgroup_id checkGroupId from t_checkgroup_checkitem a left join t_checkitem b on a.checkitem_id = b.id where a.checkgroup_id
+        in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+
 </mapper>

@@ -15,6 +15,7 @@
         <module>health-service</module>
         <module>health-web</module>
         <module>health-jobs</module>
+        <module>health-mobile</module>
     </modules>
     <packaging>pom</packaging>
     <!-- 集中定义依赖版本号 -->
