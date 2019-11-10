@@ -19,7 +19,7 @@
     <!--指定服务注册中心地址-->
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
     <!--批量扫描-->
-    <dubbo:annotation package="com.itheima.controller" />
+    <dubbo:annotation package="com.itheima.controller,com.itheima.utils" />
     <!--
         超时全局设置 10分钟
         check=false 不检查服务提供方，开发阶段建议设置为false
@@ -28,6 +28,6 @@
     <dubbo:consumer timeout="120000" check="false"/>
 
 
-<!--    <import resource="spring-jedis.xml"></import>-->
+    <import resource="applicationContext-redis.xml"></import>
 
 </beans>

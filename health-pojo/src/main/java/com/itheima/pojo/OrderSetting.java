@@ -11,6 +11,16 @@ public class OrderSetting implements Serializable{
     private Date orderDate;//预约设置日期
     private int number;//可预约人数
     private int reservations ;//已预约人数
+    private int version;
+
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
 
     public OrderSetting() {
     }

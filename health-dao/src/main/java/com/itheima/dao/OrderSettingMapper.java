@@ -14,4 +14,11 @@ public interface OrderSettingMapper {
     void add(OrderSetting orderSetting);
 
     List<OrderSetting> findByMouth(@Param("start") String start,@Param("end") String end);
+
+    OrderSetting findByDate(@Param("orderDate") Date orderDate);
+
+    void updateReservation(@Param("id") Integer id);
+
+    int updateReservations(@Param("id") Integer id, @Param("version") int version);
+
 }

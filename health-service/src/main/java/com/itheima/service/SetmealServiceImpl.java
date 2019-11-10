@@ -167,6 +167,13 @@ public class SetmealServiceImpl implements SetmealService {
         }
         return setmeal;
     }
+
+    @Override
+    public Setmeal findDetailById(Integer id) {
+
+        return setmealMapper.findById(id);
+    }
+
     private List<Integer> getCheckGroupIds(List<CheckGroup> checkGroups) {
 
         List<Integer> checkGroupIds = new ArrayList<>();
