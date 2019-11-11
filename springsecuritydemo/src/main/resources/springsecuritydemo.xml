@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc.xsd
+						http://code.alibabatech.com/schema/dubbo
+						http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+                          http://www.springframework.org/schema/security
+                          http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <context:component-scan base-package="com.itheima.security"></context:component-scan>
+
+    <!--    配置不需要拦截的资源 css js-->
+    <security:http pattern="/login.html" security="none"></security:http>
+
+
+    <!--    配置默认的登录页面
+        auto-config="true" 自动配置了一个默认的登录页面 配置了一些列的过滤器
+
+
+    -->
+    <security:http auto-config="true">
+
+        <!--        配置页面的拦截规则 需要什么样的权限
+                   具体的拦截规则要配在前
+
+
+                   hasAuthority 要访问这个页面需要有某个权限
+                   isAuthenticated 只要登录就可以
+        -->
+
+
+        <security:intercept-url pattern="/add.html" access="hasAuthority('新增检查项')"></security:intercept-url>
+        <security:intercept-url pattern="/del.html" access="hasAuthority('删除检查项')"></security:intercept-url>
+
+        <security:intercept-url pattern="/**" access="isAuthenticated()"></security:intercept-url>
+
+
+
+        <!--     配置自定义登录页面
+                             login-page="/login.html" 告诉框架我们的登录页面在哪里
+                             authentication-failure-url="/login.html" 登录失败跳转到哪里
+                             default-target-url="/index.html" 登录成功之后跳转到哪里
+
+        -->
+        <security:form-login
+                login-page="/login.html"
+                authentication-failure-url="/login.html"
+                default-target-url="/index.html"
+
+        />
+
+        <!--        禁用csrf-->
+        <security:csrf disabled="true"></security:csrf>
+
+        <!--        配置退出的url
+                    logout-url="/logout" 处理退出请求的地址 默认logout
+                    logout-success-url="/login.html" 退出成功跳转的地址
+
+         -->
+
+        <security:logout logout-url="/logout" logout-success-url="/login.html"></security:logout>
+
+    </security:http>
+
+    <bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="bCryptPasswordEncoder"></bean>
+
+    <!--    配置认证（登录）管理器-->
+    <security:authentication-manager>
+        <!--    配置认证提供者-->
+        <security:authentication-provider user-service-ref="myUserService">
+            <security:password-encoder ref="bCryptPasswordEncoder"></security:password-encoder>
+
+            <!--            <security:user-service>-->
+            <!--&lt;!&ndash;                 {noop}admin 代码明密码&ndash;&gt;-->
+            <!--                 <security:user name="admin" password="{noop}admin" authorities="新增检查项,查询检查项"></security:user>-->
+            <!--                 <security:user name="boge" password="{noop}boge" authorities="查询检查项,删除检查项"></security:user>-->
+            <!--            </security:user-service>-->
+
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+
+
+
+
+</beans>
