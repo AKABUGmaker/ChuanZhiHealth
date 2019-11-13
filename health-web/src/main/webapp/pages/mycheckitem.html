@@ -250,6 +250,14 @@
                             type: res.data.flag ? "success" : "error" //success error  warning info
                         });
 
+                }).catch((error)=>{
+                        if(error.response.status === 403){
+                            this.$message.error("没有权限，请联系管理员")
+                        } else {
+                            this.$message.error("未知错误")
+                        }
+                    })
+
                 }).catch(() => {
                     this.$message({
                         type: 'info',
@@ -259,7 +267,8 @@
 
 
 
-                })
+
+
             }
         }
     })

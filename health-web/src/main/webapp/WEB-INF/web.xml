@@ -7,6 +7,22 @@
 
 
   <filter>
+    <!--
+      DelegatingFilterProxy用于整合第三方框架
+      整合Spring Security时过滤器的名称必须为springSecurityFilterChain，
+      否则会抛出NoSuchBeanDefinitionException异常
+    -->
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+  <filter>
     <filter-name>characterEncodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
     <init-param>

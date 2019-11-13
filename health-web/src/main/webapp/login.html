@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+</head>
+<body>
+
+
+<!--
+ 用户名的参数名默认 username
+ 密码的参数名默认 password
+ 处理登录请求的url默认 /login
+-->
+
+<form action="/login.do" method="post">
+    用户名：
+    <input type="text" name="myusername"> <br>
+    密码：
+    <input type="text" name="mypassword"> <br>
+
+    <input type="submit" value="登录">
+</form>
+
+</body>
+</html>

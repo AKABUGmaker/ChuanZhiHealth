@@ -17,7 +17,7 @@
                           http://www.springframework.org/schema/security/spring-security.xsd">
 
 
-    <context:component-scan base-package="com.itheima.security"></context:component-scan>
+    <context:component-scan base-package="com.itheima"></context:component-scan>
 
     <!--    配置不需要拦截的资源 css js-->
     <security:http pattern="/login.html" security="none"></security:http>
@@ -39,8 +39,8 @@
         -->
 
 
-        <security:intercept-url pattern="/add.html" access="hasAuthority('新增检查项')"></security:intercept-url>
-        <security:intercept-url pattern="/del.html" access="hasAuthority('删除检查项')"></security:intercept-url>
+<!--        <security:intercept-url pattern="/add.html" access="hasAuthority('新增检查项')"></security:intercept-url>-->
+<!--        <security:intercept-url pattern="/del.html" access="hasAuthority('删除检查项')"></security:intercept-url>-->
 
         <security:intercept-url pattern="/**" access="isAuthenticated()"></security:intercept-url>
 
@@ -90,7 +90,8 @@
     </security:authentication-manager>
 
 
-
+    <!--    开启spring security注解-->
+    <security:global-method-security pre-post-annotations="enabled"/>
 
 
 </beans>
