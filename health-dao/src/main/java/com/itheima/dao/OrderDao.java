@@ -1,5 +1,6 @@
 package com.itheima.dao;
 
+import com.itheima.pojo.HotSetmealVo;
 import com.itheima.pojo.Order;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,5 +15,10 @@ public interface OrderDao {
     public Integer findOrderCountAfterDate(String date);
     public Integer findVisitsCountByDate(String date);
     public Integer findVisitsCountAfterDate(String date);
-    public List<Map> findHotSetmeal();
+    public List<HotSetmealVo> findHotSetmeal();
+
+
+    Integer findOrderCountBetween(@Param("start")String start, @Param("end")String end);
+
+    Integer findVisitsOrderCountBetween(@Param("start")String start, @Param("end")String end);
 }

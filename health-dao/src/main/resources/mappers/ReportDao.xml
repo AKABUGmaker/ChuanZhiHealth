@@ -7,4 +7,9 @@
         <!--  < &lt;  > &gt;   -->
         select count(*) from t_member where regTime &lt; #{month}
     </select>
+
+    <select id="getSetmealReport" resultType="java.util.Map">
+        select s.name,count(*) value
+      from t_order o,t_setmeal s where o.setmeal_id = s.id  group by s.name
+    </select>
 </mapper>

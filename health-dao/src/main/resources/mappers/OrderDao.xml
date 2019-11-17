@@ -72,10 +72,16 @@
     </select>
 
     <!--热门套餐，查询前5条-->
-    <select id="findHotSetmeal" resultType="map">
-        select s.name, count(o.id) setmeal_count ,count(o.id)/(select count(id) from t_order) proportion
+    <select id="findHotSetmeal" resultType="com.itheima.pojo.HotSetmealVo">
+        select s.name, count(o.id) setmealCount ,count(o.id)/(select count(id) from t_order) proportion
           from t_order o inner join t_setmeal s on s.id = o.setmeal_id
           group by o.setmeal_id
-          order by setmeal_count desc limit 0,4
+          order by setmealCount desc limit 0,4
+    </select>
+    <select id="findOrderCountBetween" resultType="java.lang.Integer">
+        select count(*) from t_order where  orderDate >= #{start} and orderDate &lt;= #{end}
+    </select>
+    <select id="findVisitsOrderCountBetween" resultType="java.lang.Integer">
+        select count(*) from t_order where  orderDate >= #{start} and orderDate &lt;= #{end} and orderStatus = '已到诊'
     </select>
 </mapper>
